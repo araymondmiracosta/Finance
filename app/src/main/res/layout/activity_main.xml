@@ -17,15 +17,22 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/accountViewFrameLayout"
+        android:layout_marginTop="20sp">
 
-        <TextView
-            android:id="@+id/total"
+        <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_marginTop="?attr/actionBarSize"
-        />
+            android:layout_marginTop="?attr/actionBarSize">
+
+            <LinearLayout
+                android:id="@+id/scrollLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20sp">
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <Button
             android:id="@+id/buttonOne"

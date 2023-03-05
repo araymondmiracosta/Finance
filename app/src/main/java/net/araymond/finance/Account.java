@@ -1,9 +1,10 @@
 package net.araymond.finance;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Account {
+public class Account implements Serializable {
     String name;
     double balance;
     ArrayList<Transaction> transactions;
@@ -20,5 +21,25 @@ public class Account {
 
     public void removeTransaction(int index) {
         transactions.remove(index);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
     }
 }

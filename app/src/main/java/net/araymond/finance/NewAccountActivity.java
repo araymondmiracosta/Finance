@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -76,6 +77,12 @@ public class NewAccountActivity extends AppCompatActivity {
         TextInputEditText accountNameBox = (TextInputEditText) findViewById(R.id.accountName);
         TextInputEditText accountBalanceBox = (TextInputEditText) findViewById(R.id.accountBalance);
         Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
+        if (FileIO.writeSaveData(this)) {
+            Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Data was not saved properly.", Toast.LENGTH_LONG).show();
+        }
         onBackPressed();
     }
 }
