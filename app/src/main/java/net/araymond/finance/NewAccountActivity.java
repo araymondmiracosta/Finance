@@ -77,7 +77,7 @@ public class NewAccountActivity extends AppCompatActivity {
         TextInputEditText accountNameBox = (TextInputEditText) findViewById(R.id.accountName);
         TextInputEditText accountBalanceBox = (TextInputEditText) findViewById(R.id.accountBalance);
         Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
-        if (FileIO.writeSaveData(this)) {
+        if (Utility.writeSaveData(this)) {
             Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
         }
         else {

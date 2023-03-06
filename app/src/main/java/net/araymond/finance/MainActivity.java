@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mainToolbar);
         getSupportActionBar().setTitle("Finance");
 
-        if (FileIO.readSaveData(this)) {
+        if (Utility.readSaveData(this)) {
             Toast.makeText(this, "Data read successfully! Account size: " + Values.accounts.size(), Toast.LENGTH_LONG).show();
         }
         else {
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         verticalMargins = getSupportActionBar().getHeight() * 3;
 
-        Utility.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
+        Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
                 , verticalMargins, getResources());
 
 //       TextView totalTextView = (TextView) findViewById(R.id.total);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if (executeOnResume) {
-            Utility.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
+            Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
                     ,verticalMargins, getResources());
         }
         else {
