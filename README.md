@@ -14,3 +14,4 @@ TODO
 - [ ] Search functionality (scope?)
 - [ ] Improved name
 - [ ] Improved icon
+- [ ] Rewrite README
