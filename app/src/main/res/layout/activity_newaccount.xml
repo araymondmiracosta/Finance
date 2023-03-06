@@ -27,11 +27,17 @@
         android:inputType="text"
         android:id="@+id/accountNameLayout"
 
-        android:minWidth="200sp"
+        android:minWidth="500sp"
         app:boxCornerRadiusBottomEnd="5sp"
         app:boxCornerRadiusBottomStart="5sp"
         app:boxCornerRadiusTopEnd="5sp"
         app:boxCornerRadiusTopStart="5sp"
+
+        app:hintTextColor="@color/buttonTextColor"
+        app:boxStrokeColor="@color/buttonTextColor"
+        app:helperTextColor="@color/buttonTextColor"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

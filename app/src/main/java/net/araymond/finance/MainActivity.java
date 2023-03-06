@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
                 , verticalMargins, getResources());
 
-//       TextView totalTextView = (TextView) findViewById(R.id.total);
-//       totalTextView.setText(Integer.toString(Values.accounts.size()));
     }
 
     @Override
@@ -55,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             executeOnResume = true;
         }
-
-//        TextView totalTextView = (TextView) findViewById(R.id.total);
-//        totalTextView.setText(Integer.toString(Values.accounts.size()));
-
-
     }
 
     @Override
@@ -83,8 +76,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-//        TextView totalTextView = (TextView) findViewById(R.id.total);
-//        Values.total = Values.total + 1000;
-//        totalTextView.setText(Integer.toString(Values.total));
     }
 }
