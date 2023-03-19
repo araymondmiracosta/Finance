@@ -79,7 +79,8 @@
 
      <Button
         android:id="@+id/applyButton"
-        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+        style="@style/button_style"
+        android:background="@drawable/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"

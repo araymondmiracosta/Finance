@@ -36,17 +36,16 @@
 
         <Button
             android:id="@+id/buttonOne"
-            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            style="@style/button_style"
+            android:background="@drawable/button"
+            android:backgroundTint="@color/buttonBackgroundTint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
             android:height="70sp"
-            android:backgroundTint="@color/buttonBackgroundTint"
             android:onClick="sendMessage"
             android:text="New Transaction"
-            android:textColor="@color/buttonTextColor"
             android:textSize="15sp"
-            app:iconTint="@color/buttonTextColor"
             app:icon="@drawable/baseline_add_24" />
 
     </FrameLayout>

@@ -1,18 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Finance.dark" parent="Theme.Material3.Dark.NoActionBar">
-        <!-- Primary brand color. -->
-<!--        <item name="colorPrimary">@color/material_dynamic_secondary95</item>
-        <item name="colorPrimaryVariant">@color/material_dynamic_primary10</item>
-        <item name="colorOnPrimary">@color/material_dynamic_tertiary100</item> -->
-        <!-- Secondary brand color. -->
-<!--        <item name="colorSecondary">@color/material_dynamic_primary40</item>
-        <item name="colorSecondaryVariant">@color/material_dynamic_secondary10</item>
-        <item name="colorOnSecondary">@color/material_dynamic_neutral100</item> -->
-        <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/backgroundBarDark</item>
         <item name="android:navigationBarColor">@color/backgroundDark</item>
         <item name="actionBarStyle">@color/backgroundBarDark</item>
         <item name="android:windowBackground">@color/backgroundDark</item>
+        <item name="android:button">@color/buttonTextColor</item>
     </style>
 </resources>
