@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="buttonBackgroundTint">@color/material_dynamic_neutral_variant20</color>
-    <color name="buttonBackgroundTintPressed">@color/material_dynamic_neutral_variant30</color>
-    <color name="buttonTextColor">@color/material_dynamic_primary80</color>
+    <color name="primaryDark">#8cccfc</color>
+    <color name="backgroundBarDark">#313131</color>
+    <color name="backgroundDark">#191c21</color>
+
+    <color name="buttonBackgroundTint">#29313a</color>
+    <color name="buttonBackgroundTintPressed">#3a414a</color>
+    <color name="buttonTextColor">#8cccfc</color>
 </resources>

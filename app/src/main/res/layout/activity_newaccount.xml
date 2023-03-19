@@ -25,22 +25,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:id="@+id/accountNameLayout"
-
         android:minWidth="500sp"
-        app:boxCornerRadiusBottomEnd="5sp"
-        app:boxCornerRadiusBottomStart="5sp"
-        app:boxCornerRadiusTopEnd="5sp"
-        app:boxCornerRadiusTopStart="5sp"
-
-        app:hintTextColor="@color/buttonTextColor"
-        app:boxStrokeColor="@color/buttonTextColor"
-        app:helperTextColor="@color/buttonTextColor"
-
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusBottomEnd="5sp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/accountName"
@@ -54,12 +47,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:minWidth="500sp"
 
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
