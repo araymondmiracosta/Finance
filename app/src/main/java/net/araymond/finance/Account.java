@@ -1,7 +1,9 @@
 package net.araymond.finance;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Account implements Serializable {
@@ -15,8 +17,8 @@ public class Account implements Serializable {
         transactions = new ArrayList<Transaction>();
     }
 
-    public void newTransaction(String category, String description, double amount, LocalDateTime dateAndTime) {
-        transactions.add(new Transaction(category, description, amount, dateAndTime));
+    public void newTransaction(String category, String description, double amount, LocalDate date, LocalTime time) {
+        transactions.add(new Transaction(category, description, amount, date, time));
     }
 
     public void removeTransaction(int index) {

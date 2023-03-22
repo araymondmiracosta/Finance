@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Data was not read successfully.", Toast.LENGTH_LONG).show();
         }
 
+        Utility.readCategories();
+
         verticalMargins = getSupportActionBar().getHeight() * 3;
 
         Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)

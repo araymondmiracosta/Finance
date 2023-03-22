@@ -1,18 +1,21 @@
 package net.araymond.finance;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Transaction implements Serializable {
     String category, description;
     double amount;
-    LocalDateTime dateAndTime;
+    LocalDate date;
+    LocalTime time;
 
-    public Transaction(String category, String description, double amount, LocalDateTime dateAndTime) {
+    public Transaction(String category, String description, double amount, LocalDate date, LocalTime time) {
         this.category = category;
         this.description = description;
         this.amount = amount;
-        this.dateAndTime = dateAndTime;
+        this.date = date;
     }
 
     public void setCategory(String category) {
@@ -27,8 +30,20 @@ public class Transaction implements Serializable {
         this.amount = amount;
     }
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
-        this.dateAndTime = dateAndTime;
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     public String getCategory() {
@@ -41,9 +56,5 @@ public class Transaction implements Serializable {
 
     public double getAmount() {
         return amount;
-    }
-
-    public LocalDateTime getDateAndTime() {
-        return dateAndTime;
     }
 }

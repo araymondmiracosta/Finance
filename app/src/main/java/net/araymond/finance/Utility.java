@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Utility {
-    public static void readCategories(Context context) {
+    public static void readCategories() {
         ArrayList<Transaction> transactions;
 
         for (Account account : Values.accounts) {

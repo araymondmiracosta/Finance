@@ -74,13 +74,22 @@ public class NewAccountActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         TextInputEditText accountNameBox = (TextInputEditText) findViewById(R.id.accountName);
         TextInputEditText accountBalanceBox = (TextInputEditText) findViewById(R.id.accountBalance);
-        Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
-        if (Utility.writeSaveData(this)) {
-            Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
+        String accountName = accountNameBox.getText().toString();
+        boolean nameCheck = true;
+        for (Account account : Values.accounts) {
+            if (accountName.compareTo(account.getName()) == 0) {
+                nameCheck = false;
+                Toast.makeText(this, "New account name cannot be the same as an existing account.", Toast.LENGTH_LONG).show();
+            }
         }
-        else {
-            Toast.makeText(this, "Data was not saved properly.", Toast.LENGTH_LONG).show();
+        if (nameCheck) {
+            Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
+            if (Utility.writeSaveData(this)) {
+                Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Data was not saved properly.", Toast.LENGTH_LONG).show();
+            }
+            onBackPressed();
         }
-        onBackPressed();
     }
 }

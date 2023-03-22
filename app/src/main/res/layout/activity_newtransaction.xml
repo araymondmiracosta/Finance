@@ -27,6 +27,7 @@
 
         <Button
             android:textAlignment="center"
+            android:id="@+id/addButton"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="5dp"
@@ -44,6 +45,7 @@
 
         <Button
             android:textAlignment="center"
+            android:id="@+id/negativeButton"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="5dp"
@@ -172,6 +174,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:hint="Transaction date"
+            android:focusable="false"
             android:maxLines="1"
             tools:ignore="KeyboardInaccessibleWidget" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -198,6 +201,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:hint="Transaction time"
+            android:focusable="false"
             android:maxLines="1"
             tools:ignore="KeyboardInaccessibleWidget" />
     </com.google.android.material.textfield.TextInputLayout>
