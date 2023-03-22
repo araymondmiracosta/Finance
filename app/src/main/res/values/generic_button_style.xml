@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="generic_button_style" parent="Widget.Material3.Button.ElevatedButton.Icon">
+<!--        <item name="android:background">@drawable/button</item> -->
+<!--        <item name="android:buttonStyle">@drawable/button</item> -->
+        <item name="android:textColor">@color/generic_button_textcolor_selector</item>
+        <item name="android:backgroundTint">@color/generic_button_backgroundcolor_selector</item>
+        <item name="iconTint">@color/generic_button_textcolor_selector</item>
+    </style>
+</resources>

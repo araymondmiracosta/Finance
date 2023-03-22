@@ -36,9 +36,7 @@
 
         <Button
             android:id="@+id/buttonOne"
-            style="@style/button_style"
-            android:background="@drawable/button"
-            android:backgroundTint="@color/buttonBackgroundTint"
+            style="@style/generic_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"

@@ -5,6 +5,5 @@
         <item name="android:navigationBarColor">@color/backgroundDark</item>
         <item name="actionBarStyle">@color/backgroundBarDark</item>
         <item name="android:windowBackground">@color/backgroundDark</item>
-        <item name="android:button">@color/buttonTextColor</item>
     </style>
 </resources>
