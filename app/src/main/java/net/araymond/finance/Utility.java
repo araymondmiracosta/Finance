@@ -9,6 +9,17 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Utility {
+    public static void readCategories(Context context) {
+        ArrayList<Transaction> transactions;
+
+        for (Account account : Values.accounts) {
+            transactions = account.getTransactions();
+            for (Transaction transaction : transactions) {
+                Values.categories.add(transaction.getCategory());
+            }
+        }
+    }
+
     public static boolean readSaveData(Context context) {
         try {
             FileInputStream inputStream = context.openFileInput("ledger");

@@ -5,6 +5,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -13,23 +15,28 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-public class NewAccountActivity extends AppCompatActivity {
+public class NewTransactionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newaccount);
+        setContentView(R.layout.activity_newtransaction);
 
-        Toolbar newAccountToolbar = (Toolbar) findViewById(R.id.newAccountToolbar);
-        setSupportActionBar(newAccountToolbar);
-        getSupportActionBar().setTitle("New Account");
+        Toolbar newTransactionToolbar = (Toolbar) findViewById(R.id.newTransactionToolbar);
+        setSupportActionBar(newTransactionToolbar);
+        getSupportActionBar().setTitle("New Transaction");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button applyButton = (Button) findViewById(R.id.applyButton);
-        TextInputEditText accountNameBox = (TextInputEditText) findViewById(R.id.accountName);
-        TextInputEditText accountBalanceBox = (TextInputEditText) findViewById(R.id.accountBalance);
+        TextInputEditText transactionDescription = (TextInputEditText) findViewById(R.id.transactionDescription);
+        TextInputEditText transactionAmount = (TextInputEditText) findViewById(R.id.transactionAmount);
+        AutoCompleteTextView transactionCategory = (AutoCompleteTextView) findViewById(R.id.transactionCategory);
 
         applyButton.setEnabled(false);
+        transactionCategory.setThreshold(0);
+
+        transactionCategory.setAdapter(new ArrayAdapter<String>
+                (this, android.R.layout.simple_dropdown_item_1line, Values.categories));
 
         final TextWatcher watcher = new TextWatcher() {
             @Override
@@ -40,9 +47,10 @@ public class NewAccountActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
-                    Double.valueOf(accountBalanceBox.getText().toString());
-                    if (accountNameBox.getText().toString().length() == 0 ||
-                            accountBalanceBox.getText().toString().length() == 0) {
+                    Double.valueOf(transactionAmount.getText().toString());
+                    if (transactionDescription.getText().toString().length() == 0 ||
+                            transactionAmount.getText().toString().length() == 0 ||
+                            transactionCategory.getText().toString().length() == 0) {
                         applyButton.setEnabled(false);
                     }
                     else {
@@ -59,8 +67,8 @@ public class NewAccountActivity extends AppCompatActivity {
             }
         };
 
-        accountNameBox.addTextChangedListener(watcher);
-        accountBalanceBox.addTextChangedListener(watcher);
+        transactionDescription.addTextChangedListener(watcher);
+        transactionAmount.addTextChangedListener(watcher);
     }
 
     @Override
@@ -72,9 +80,9 @@ public class NewAccountActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-        TextInputEditText accountNameBox = (TextInputEditText) findViewById(R.id.accountName);
-        TextInputEditText accountBalanceBox = (TextInputEditText) findViewById(R.id.accountBalance);
-        Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
+        TextInputEditText transactionDescription = (TextInputEditText) findViewById(R.id.transactionDescription);
+        TextInputEditText transactionAmount = (TextInputEditText) findViewById(R.id.transactionAmount);
+        Values.accounts.add(new Account(transactionDescription.getText().toString(), Double.parseDouble(transactionAmount.getText().toString())));
         if (Utility.writeSaveData(this)) {
             Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
         }

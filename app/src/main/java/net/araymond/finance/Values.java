@@ -6,4 +6,5 @@ public class Values {
     static int total;
     static String language = "en", country = "us";
     static ArrayList<Account> accounts = new ArrayList<Account>();
+    static ArrayList<String> categories = new ArrayList<>();
 }

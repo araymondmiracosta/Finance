@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/newTransactionToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/actionBarStyle"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+    />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </Space>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="15dp"
+            app:icon="@drawable/baseline_add_24"
+            style="@style/generic_button_style"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+        </Button>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Space>
+
+        <Button
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            app:icon="@drawable/baseline_remove_24"
+            style="@style/generic_button_style"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+        </Button>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Space>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/generic_textbox_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:minWidth="500sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transactionAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:hint="Transaction amount"
+                tools:ignore="KeyboardInaccessibleWidget" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/generic_autocomplete_dropdown_style"
+        android:minWidth="500sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="15dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:hint="Transaction account"
+            android:id="@+id/transactionAccount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/generic_autocomplete_dropdown_style"
+        android:minWidth="500sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginTop="30dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:hint="Transaction category"
+            android:id="@+id/transactionCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/generic_textbox_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:minWidth="500sp"
+        android:layout_marginTop="15dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusBottomEnd="5sp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/transactionDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:hint="Transaction description"
+            android:maxLines="1"
+            tools:ignore="KeyboardInaccessibleWidget" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/generic_textbox_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:minWidth="500sp"
+        android:layout_gravity="top"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusBottomEnd="5sp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/transactionDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:hint="Transaction date"
+            android:maxLines="1"
+            tools:ignore="KeyboardInaccessibleWidget" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/generic_textbox_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:minWidth="500sp"
+        android:layout_gravity="top"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:boxCornerRadiusBottomEnd="5sp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/transactionTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:hint="Transaction time"
+            android:maxLines="1"
+            tools:ignore="KeyboardInaccessibleWidget" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+    </Space>
+
+    <Button
+        android:id="@+id/applyButton"
+        style="@style/generic_button_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:height="70sp"
+        android:onClick="sendMessage"
+        android:text="Apply"
+        android:textSize="15sp"
+        app:icon="@drawable/baseline_check_24">
+   </Button>
+</LinearLayout>
