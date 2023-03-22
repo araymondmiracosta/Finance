@@ -21,7 +21,7 @@
     </Space>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+        style="@style/generic_textbox_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -47,7 +47,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+        style="@style/generic_textbox_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
