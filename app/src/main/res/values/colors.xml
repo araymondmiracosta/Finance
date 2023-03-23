@@ -8,6 +8,8 @@
     <color name="buttonBackgroundTintPressed">#3a414a</color>
     <color name="buttonTextColor">#8cccfc</color>
 
+    <color name="hintColor">#dedede</color>
+
     <color name="buttonBackgroundTintDisabled">#20272e</color>
     <color name="buttonTextColorDisabled">#7c7c7c</color>
 </resources>

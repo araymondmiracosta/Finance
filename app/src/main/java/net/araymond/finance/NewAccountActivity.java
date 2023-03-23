@@ -83,7 +83,7 @@ public class NewAccountActivity extends AppCompatActivity {
             }
         }
         if (nameCheck) {
-            Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.valueOf(accountBalanceBox.getText().toString())));
+            Values.accounts.add(new Account(accountNameBox.getText().toString(), Double.parseDouble(accountBalanceBox.getText().toString())));
             if (Utility.writeSaveData(this)) {
                 Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
             } else {
