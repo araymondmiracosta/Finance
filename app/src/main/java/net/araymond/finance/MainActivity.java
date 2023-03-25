@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Finance");
 
         if (Utility.readSaveData(this)) {
+            Utility.readCategories();
+            Utility.readAccounts();
             Toast.makeText(this, "Data read successfully! Account size: " + Values.accounts.size(), Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Data was not read successfully.", Toast.LENGTH_LONG).show();
         }
-
-        Utility.readCategories();
 
         verticalMargins = getSupportActionBar().getHeight() * 3;
 

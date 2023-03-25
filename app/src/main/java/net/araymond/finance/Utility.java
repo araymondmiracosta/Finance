@@ -9,6 +9,27 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Utility {
+
+    public static int indexFromName(String accountName) {
+        for (int i = 0; i < Values.accounts.size(); i++) {
+            if (accountName.compareTo(Values.accounts.get(i).getName()) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void readAccounts() {
+        int accountsSize = Values.accounts.size();
+        String[] accountsNames = new String[accountsSize];
+
+        for (int i = 0; i < accountsSize; i++) {
+            accountsNames[i] = Values.accounts.get(i).getName();
+        }
+
+        Values.accountsNames = accountsNames;
+    }
+
     public static void readCategories() {
         ArrayList<Transaction> transactions;
 

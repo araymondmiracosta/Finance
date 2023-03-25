@@ -19,6 +19,7 @@ public class Account implements Serializable {
 
     public void newTransaction(String category, String description, double amount, LocalDate date, LocalTime time) {
         transactions.add(new Transaction(category, description, amount, date, time));
+        balance += amount;
     }
 
     public void removeTransaction(int index) {

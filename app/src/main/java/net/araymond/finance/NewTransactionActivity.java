@@ -1,8 +1,5 @@
 package net.araymond.finance;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,25 +8,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
-
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.timepicker.MaterialTimePicker;
-import com.google.android.material.timepicker.TimeFormat;
-
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Calendar;
 
 public class NewTransactionActivity extends AppCompatActivity {
@@ -77,7 +67,7 @@ public class NewTransactionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         localTime = LocalTime.of(materialTimePicker.getHour(), materialTimePicker.getMinute());
-                        transactionDate.setText(localTime.format(timeFormatter));
+                        transactionTime.setText(localTime.format(timeFormatter));
                     }
                 }
         );
@@ -129,9 +119,17 @@ public class NewTransactionActivity extends AppCompatActivity {
         negativeButton.setTextColor(ResourcesCompat.getColor
                 (getResources(), R.color.buttonTextColor, null));
 
-        transactionCategory.setAdapter(new ArrayAdapter<String>
+        // Begin transaction category
+        transactionCategory.setAdapter(new ArrayAdapter<>
                 (this, android.R.layout.simple_dropdown_item_1line, Values.categories));
 
+        // End transaction category
+
+        // Begin transaction account
+        transactionAccount.setAdapter(new ArrayAdapter<>
+                (this, android.R.layout.simple_dropdown_item_1line, Values.accountsNames));
+
+        // End transaction account
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -170,17 +168,17 @@ public class NewTransactionActivity extends AppCompatActivity {
             }
 
             @Override
+            // Ensure that the apply button is only available if EVERY field is valid
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 try {
-                    Double.valueOf(transactionAmount.getText().toString());
-                    if (transactionDescription.getText().toString().length() == 0 ||
-                            transactionAmount.getText().toString().length() == 0 ||
-                            transactionCategory.getText().toString().length() == 0) {
-                        applyButton.setEnabled(false);
-                    }
-                    else {
-                        applyButton.setEnabled(true);
-                    }
+                    // Check transaction amount is valid
+                    Double.parseDouble(transactionAmount.getText().toString());
+                    applyButton.setEnabled(
+                            // Check transaction account is valid
+                            Utility.indexFromName(transactionAccount.getText().toString()) != -1 &&
+                            transactionCategory.getText().toString().length() != 0
+//                             && transactionDescription.getText().toString().length() != 0
+                    );
                 } catch (Exception exception) {
                     applyButton.setEnabled(false);
                 }
@@ -192,9 +190,10 @@ public class NewTransactionActivity extends AppCompatActivity {
             }
         };
 
-        transactionDescription.addTextChangedListener(watcher);
         transactionAmount.addTextChangedListener(watcher);
+        transactionAccount.addTextChangedListener(watcher);
         transactionCategory.addTextChangedListener(watcher);
+//        transactionDescription.addTextChangedListener(watcher);
     }
 
     @Override
@@ -210,19 +209,28 @@ public class NewTransactionActivity extends AppCompatActivity {
         AutoCompleteTextView transactionAccount = (AutoCompleteTextView) findViewById(R.id.transactionAccount);
         AutoCompleteTextView transactionCategory = (AutoCompleteTextView) findViewById(R.id.transactionCategory);
         TextInputEditText transactionDescription = (TextInputEditText) findViewById(R.id.transactionDescription);
-        TextInputEditText transactionDate = (TextInputEditText) findViewById(R.id.transactionDate);
-        TextInputEditText transactionTime = (TextInputEditText) findViewById(R.id.transactionTime);
-        Button addButton = (Button) findViewById(R.id.addButton);
-        Button negativeButton = (Button) findViewById(R.id.negativeButton);
-        Button applyButton = (Button) findViewById(R.id.applyButton);
 
-//        Values.accounts.add(new Account(transactionDescription.getText().toString(), Double.parseDouble(transactionAmount.getText().toString())));
- //       if (Utility.writeSaveData(this)) {
- //           Toast.makeText(this, "Data saved! Account size:" + Values.accounts.size(), Toast.LENGTH_LONG).show();
- //       }
- //       else {
- //           Toast.makeText(this, "Data was not saved properly.", Toast.LENGTH_LONG).show();
- //       }
+        double amount = Double.parseDouble(transactionAmount.getText().toString());
+        int accountIndex = Utility.indexFromName(transactionAccount.getText().toString());
+        String category = transactionCategory.getText().toString();
+        String description = transactionDescription.getText().toString();
+
+        if (!(isPositive)) {
+            amount *= -1;
+        }
+
+        Values.accounts.get(accountIndex).newTransaction(
+                category, description, amount, localDate, localTime);
+
+        if (Utility.writeSaveData(this)) {
+            Toast.makeText(this, "New transaction added! Transaction size on account \""
+            + Values.accounts.get(accountIndex).getName() + "\": " + Values.accounts.get(accountIndex)
+            , Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Data was not saved properly.", Toast.LENGTH_SHORT).show();
+        }
+
         onBackPressed();
     }
 }
