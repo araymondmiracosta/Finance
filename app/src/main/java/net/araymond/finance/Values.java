@@ -10,7 +10,6 @@ public class Values {
     static String language = "en", country = "us", dateFormat = "MM-dd-yyyy", timeFormat = "HH:mm";
     static ArrayList<Account> accounts = new ArrayList<>();
     static ArrayList<String> categories = new ArrayList<>();
+    static ArrayList<String> accountsNames = new ArrayList<>();
     static Locale locale = new Locale(language, country);
-
-    static String[] accountsNames;
 }

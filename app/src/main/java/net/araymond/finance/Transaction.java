@@ -16,6 +16,7 @@ public class Transaction implements Serializable {
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.time = time;
     }
 
     public void setCategory(String category) {

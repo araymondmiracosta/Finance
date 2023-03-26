@@ -20,14 +20,10 @@ public class Utility {
     }
 
     public static void readAccounts() {
-        int accountsSize = Values.accounts.size();
-        String[] accountsNames = new String[accountsSize];
-
-        for (int i = 0; i < accountsSize; i++) {
-            accountsNames[i] = Values.accounts.get(i).getName();
+        for (Account account : Values.accounts) {
+            Values.accountsNames = new ArrayList<>();
+            Values.accountsNames.add(account.getName());
         }
-
-        Values.accountsNames = accountsNames;
     }
 
     public static void readCategories() {

@@ -5,17 +5,16 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     boolean executeOnResume;
-    int verticalMargins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mainToolbar);
         getSupportActionBar().setTitle("Finance");
 
-        if (Utility.readSaveData(this)) {
-            Utility.readCategories();
-            Utility.readAccounts();
-            Toast.makeText(this, "Data read successfully! Account size: " + Values.accounts.size(), Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(this, "Data was not read successfully.", Toast.LENGTH_LONG).show();
-        }
-
-        verticalMargins = getSupportActionBar().getHeight() * 3;
-
-        Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
-                , verticalMargins, getResources());
-
+        initialize();
     }
 
     @Override
@@ -49,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if (executeOnResume) {
-            Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
-                    ,verticalMargins, getResources());
+            verifyAccountsSize();
         }
         else {
             executeOnResume = true;
@@ -72,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(newIntent);
                 return true;
 
+            case R.id.about:
+                return true;
+
             default:
                 return true;
         }
@@ -80,5 +68,32 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         Intent newIntent = new Intent(MainActivity.this, NewTransactionActivity.class);
         MainActivity.this.startActivity(newIntent);
+    }
+
+    public void initialize() {
+        if (Utility.readSaveData(this)) {
+            Toast.makeText(this, "Data read successfully! Account size: " + Values.accounts.size(), Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, "Data was not read successfully.", Toast.LENGTH_LONG).show();
+        }
+        verifyAccountsSize();
+    }
+
+    public void verifyAccountsSize() {
+        int accountsSize = Values.accounts.size();
+        Button transactionButton = (Button) findViewById(R.id.transactionButton);
+        if (accountsSize == 0) {
+            transactionButton.setEnabled(false);
+        }
+        else {
+            Utility.readCategories();
+            Utility.readAccounts();
+            Views.generateAccountScrollView(this, (LinearLayout) findViewById(R.id.scrollLinearLayout)
+                    , getResources());
+            Views.generateTransactionScrollView(this, (LinearLayout) findViewById(R.id.transactionScrollView)
+                    , getResources());
+            transactionButton.setEnabled(true);
+        }
     }
 }

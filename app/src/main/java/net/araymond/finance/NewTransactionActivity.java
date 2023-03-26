@@ -126,8 +126,9 @@ public class NewTransactionActivity extends AppCompatActivity {
         // End transaction category
 
         // Begin transaction account
+        String[] accountsNames = Values.accountsNames.toArray(new String[0]);
         transactionAccount.setAdapter(new ArrayAdapter<>
-                (this, android.R.layout.simple_dropdown_item_1line, Values.accountsNames));
+                (this, android.R.layout.simple_dropdown_item_1line, accountsNames));
 
         // End transaction account
 

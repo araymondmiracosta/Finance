@@ -10,6 +10,9 @@
 
     <color name="hintColor">#dedede</color>
 
+    <color name="positiveColor">#00f320</color>
+    <color name="negativeColor">#ff0000</color>
+
     <color name="buttonBackgroundTintDisabled">#20272e</color>
     <color name="buttonTextColorDisabled">#7c7c7c</color>
 </resources>
