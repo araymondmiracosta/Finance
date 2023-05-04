@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Utility {
 
@@ -28,6 +29,7 @@ public class Utility {
 
     public static void readCategories() {
         ArrayList<Transaction> transactions;
+        HashSet<String> duplicatesRemoved;
 
         for (Account account : Values.accounts) {
             transactions = account.getTransactions();
@@ -35,6 +37,10 @@ public class Utility {
                 Values.categories.add(transaction.getCategory());
             }
         }
+
+        duplicatesRemoved = new HashSet<>(Values.categories);
+        Values.categories = new ArrayList<>(duplicatesRemoved);
+
     }
 
     public static boolean readSaveData(Context context) {

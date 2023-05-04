@@ -2,7 +2,6 @@ package net.araymond.finance;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Transaction implements Serializable {

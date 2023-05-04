@@ -3,9 +3,14 @@ package net.araymond.finance;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
@@ -43,13 +48,14 @@ public class Views extends AppCompatActivity {
         scrollLinearLayout.addView(beginningSpace);
 
         for (Account account : Values.accounts) {
-            for (Transaction transaction : account.getTransactions()) {
+            for (int i = account.getTransactions().size() - 1; i >= 0; i--) {
+                Transaction transaction = account.getTransactions().get(i);
                 TextView transactionAmount = new TextView(context);       // Text box for transaction amount
                 TextView accountName = new TextView(context);          // Text box for account name
                 TextView transactionCategory = new TextView(context);     // Text box for transaction category
                 TextView transactionDate = new TextView(context);        // Text box transaction date
                 TextView transactionTime = new TextView(context);       // Text box for transaction time
-                LinearLayout linearLayout = new LinearLayout(context);    // Layout to hold text views
+                GridLayout gridLayout = new GridLayout(context);    // Layout to hold text views
                 Space nextSpace = new Space(context);
                 Space middleSpace = new Space(context);
                 Space bottomSpace = new Space(context);
@@ -69,13 +75,14 @@ public class Views extends AppCompatActivity {
                 bottomSpace.setMinimumHeight((int) Math.round(padding * 0.80));
                 topSpace.setMinimumHeight((int) Math.round(padding * 0.80));
 
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                linearLayout.setBackgroundColor(backgroundColor);
-                linearLayout.setBackground(resources.getDrawable(R.drawable.button, null));
+                gridLayout.setOrientation(GridLayout.HORIZONTAL);
+                gridLayout.setColumnCount(2);
+                gridLayout.setBackgroundColor(backgroundColor);
+                gridLayout.setBackground(resources.getDrawable(R.drawable.button, null));
 
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
                         (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(horizontalMargins, 0, horizontalMargins, 0);
+                params.setMargins(horizontalMargins, horizontalMargins / 10, horizontalMargins, horizontalMargins / 10);
 
                 // Transaction amount
                 if (transaction.getAmount() < 0) {
@@ -83,47 +90,58 @@ public class Views extends AppCompatActivity {
                     transactionAmount.setTextColor(negativeColor);
                 }
                 else {
-                    transactionAmountText = decimalFormat.format(transaction.getAmount());
+                    transactionAmountText = " " + decimalFormat.format(transaction.getAmount()) + " ";
                     transactionAmount.setTextColor(positiveColor);
                 }
                 transactionAmount.setLayoutParams(params);
                 transactionAmount.setTypeface(Typeface.DEFAULT_BOLD);
-                transactionAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                transactionAmount.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
                 transactionAmount.setText(transactionAmountText);
-
-                System.out.println(transactionAmountText);
 
                 // End transaction amount
 
                 // Account name
-                accountNameText = "Account: " + account.getName();
+                SpannableString accountSpan = new SpannableString(
+                        "Account: " + account.getName()
+                );
+                StyleSpan accountSpanStyle = new StyleSpan(Typeface.BOLD);
+                accountSpan.setSpan(accountSpanStyle, 9, accountSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 accountName.setLayoutParams(params);
                 accountName.setTextColor(textColor);
                 accountName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                accountName.setText(accountNameText);
+                accountName.setText(accountSpan);
 
                 // End account name
 
                 // Transaction category
-                transactionCategoryText = "Category: " + transaction.getCategory();
+                SpannableString categorySpan = new SpannableString(
+                        "Category: " + transaction.getCategory()
+                );
+                StyleSpan categorySpanStyle = new StyleSpan(Typeface.BOLD);
+                categorySpan.setSpan(categorySpanStyle, 9, categorySpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 transactionCategory.setLayoutParams(params);
                 transactionCategory.setTextColor(textColor);
                 transactionCategory.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                transactionCategory.setText(transactionCategoryText);
+                transactionCategory.setText(categorySpan);
+                transactionCategory.setWidth(horizontalMargins * 8);
 
                 // End transaction category
 
                 // Transaction date
-                transactionDateText = "Date: " + transaction.getDate().format(dateTimeFormatter);
+                SpannableString dateSpan = new SpannableString(
+                        transaction.getDate().format(dateTimeFormatter) + " @ " +
+                        transaction.getTime().format(timeFormatter));
+                StyleSpan dateSpanStyle = new StyleSpan(Typeface.BOLD);
+                dateSpan.setSpan(dateSpanStyle, 0, dateSpan.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 transactionDate.setLayoutParams(params);
                 transactionDate.setTextColor(textColor);
-                transactionDate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                transactionDate.setText(transactionDateText);
+                transactionDate.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                transactionDate.setText(dateSpan);
 
                 // End transaction date
 
                 // Transaction time
-                transactionTimeText = "Time: " + transaction.getTime().format(timeFormatter);
+                transactionTimeText = transaction.getTime().format(timeFormatter);
                 transactionTime.setLayoutParams(params);
                 transactionTime.setTextColor(textColor);
                 transactionTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
@@ -131,22 +149,25 @@ public class Views extends AppCompatActivity {
 
                 // End transaction time
 
-                linearLayout.setGravity(Gravity.LEFT);
-                linearLayout.addView(topSpace);
-                linearLayout.addView(transactionAmount);
-                linearLayout.addView(accountName);
-                linearLayout.addView(transactionCategory);
-                linearLayout.addView(transactionDate);
-                linearLayout.addView(transactionTime);
-                linearLayout.addView(bottomSpace);
+                gridLayout.addView(transactionCategory);
+                gridLayout.addView(topSpace);
+                gridLayout.addView(accountName);
+                gridLayout.addView(transactionAmount);
+//                gridLayout.addView(transactionAmount, new GridLayout.LayoutParams(
+//                        GridLayout.spec(1, GridLayout.RIGHT),
+//                        GridLayout.spec(1, GridLayout.RIGHT)
+//                ));
+                gridLayout.addView(transactionDate);
+                gridLayout.addView(bottomSpace);
+//                gridLayout.addView(transactionTime);
 
-                linearLayout.setOnClickListener(new View.OnClickListener() {
+                gridLayout.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
                         Toast.makeText(context, transactionAmountText, Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                scrollLinearLayout.addView(linearLayout);
+                scrollLinearLayout.addView(gridLayout);
                 scrollLinearLayout.addView(middleSpace);
             }
         }

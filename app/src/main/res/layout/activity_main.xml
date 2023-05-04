@@ -37,13 +37,14 @@
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="230dp">
+            android:layout_marginTop="200dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/transactionScrollView">
             </LinearLayout>
         </ScrollView>
@@ -54,12 +55,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
+            android:layout_marginRight="15sp"
+            android:layout_marginBottom="20sp"
             android:height="70sp"
             android:onClick="sendMessage"
             android:text="New Transaction"
             android:textSize="15sp"
             app:icon="@drawable/baseline_add_24" />
-
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
