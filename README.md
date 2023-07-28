@@ -1,3 +1,5 @@
+### This repo is no longer maintained. Development has moved to [easyFinance](https://github.com/araymondmiracosta/easyFinance).
+
 # Finance
 Mobile application to track assets, cash and liabilities.
 
